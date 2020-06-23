@@ -84,6 +84,7 @@ tags:
 #	make push [TAGS=t1,t2,...]
 
 push:
+	echo $DOCKER_PASSWORD | docker login -u$DOCKER_USERNAME --password-stdin
 	(set -e ; $(foreach tag, $(parsed-tags), \
 		docker push $(IMAGE_NAME):$(tag) ; \
 	))
